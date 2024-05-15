@@ -1,0 +1,21 @@
+spec:
+  containers:  
+  - name: react_templates
+    image: /containers/app_images/data_eng_apps/react_templates:latest
+    env:
+      SNOWFLAKE_WAREHOUSE: ADMIN_UTILITY_WH
+      DATA_DB: CONTAINERS
+      DATA_SCHEMA: APP_IMAGES
+      LLAMA2_MODEL: llama2-70b-chat
+    volumeMounts: 
+    - name: workspace
+      mountPath: /home/react_templates/
+  endpoint:
+  - name: react_templates
+    port: 5000
+    public: true
+  volume:
+  - name: workspace
+    source: local
+  networkPolicyConfig:
+    allowInternetEgress: false    
