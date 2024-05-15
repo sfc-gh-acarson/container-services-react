@@ -13,14 +13,13 @@ create warehouse if not exists ADMIN_UTILITY_WH WAREHOUSE_SIZE=SMALL;
 use schema CONTAINERS.APP_IMAGES
 
 create stage DATA_ENG_APPS;
-create stage CONFIGURATION;
 
 create image repository REACT_TEMPLATES;
 
-create compute pool REACT_TEMPLATES_CP
+create compute pool REACT_TEMPLATES_COMP_POOL
 MIN_NODES = 1
 MAX_NODES = 1
-INSTANCE_FAMILY = STANDARD_2
+INSTANCE_FAMILY = CPU_X64_S
 AUTO_SUSPEND_SECS = 7200
 ;
 
