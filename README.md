@@ -1,38 +1,4 @@
-# container-services-react
-# React Application with Snowflake Cortex in Snowpark Container Sevices
-
-## Overview
-
-$ npx create-react-app react-flask-app
-$ cd react-flask-app
-
-conda create --name spcs_env -c https://repo.anaconda.com/pkgs/snowflake python=3.9
-conda activate spcs_env
-
-pip install flask
-
--- need mui here npm install mui
-https://stackoverflow.com/questions/29882642/how-to-run-a-flask-application
-The flask command is a CLI for interacting with Flask apps. The docs describe how to use CLI commands and add custom commands. The flask run command is the preferred way to start the development server.
-Never use this command to deploy publicly, use a production WSGI server such as Gunicorn, uWSGI, Waitress, or mod_wsgi.
-As of Flask 2.2, use the --app option to point the command at your app. It can point to an import name or file name. It will automatically detect an app instance or an app factory called create_app. Use the --debug option to run in debug mode with the debugger and reloader.
-
-$ flask --app sample --debug run
-
-react-flask-app-0 % docker build -f Dockerfile.api --platform linux/amd64 -t react-flask-app-api .
-
-docker build -f Dockerfile --platform linux/amd64 -t snowday .
-docker run --env-file env.list -p 5000:5000 snowday
-
-
-
--- docker tag snowday:latest sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/docker_containers_db/finance_app_images/app_templates_repo/snowday:latest
--- docker login sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com
--- docker push sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/docker_containers_db/finance_app_images/app_templates_repo/snowday:latest
-
---------
-
-# React Application with Snowflake Cortex in Snowpark Container Sevices
+# React Application with Material UI Templates to Run in Snowpark Container Services
 
 ## Overview
 
@@ -83,21 +49,21 @@ Clone this repo and browse to the cloned repo
 In a terminal window, browse to the cloned repo folder and execute the following commands:
 
 * Download and install the miniconda installer from https://conda.io/miniconda.html. (OR, you may use any other Python environment, for example, [virtualenv](https://virtualenv.pypa.io/en/latest/)).
-* Execute `conda create --name react-flask-env -c https://repo.anaconda.com/pkgs/snowflake python=3.9`
-* Execute `conda activate react-flask-env`
+* Execute `conda create --name react-templates-env -c https://repo.anaconda.com/pkgs/snowflake python=3.9`
+* Execute `conda activate react-templates-env`
 * Execute `conda install -c https://repo.anaconda.com/pkgs/snowflake snowflake-snowpark-python pandas`
 
 ### Step 3: Install Flask
 
-In the same terminal window where you have `snowpark-spcs` env activated, execute `pip install Flask`
+In the same terminal window where you have `react-templates-env` env activated, execute `pip install Flask`
 
 ### Step 4: Install React And Its Components
 
-In the same terminal window where you have `react-flask-env` env activated, execute `npm install`
+In the same terminal window where you have `react-templates-env` env activated, execute `npm install`
 
 ## Build Application
 
-In the same terminal window where you have `react-flask-env` env activated, execute `npm run build` to build the application.
+In the same terminal window where you have `react-templates-env` env activated, execute `npm run build` to build the application.
 
 ### Run Application Locally
 
