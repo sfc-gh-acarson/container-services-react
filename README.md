@@ -21,9 +21,14 @@ $ flask --app sample --debug run
 
 react-flask-app-0 % docker build -f Dockerfile.api --platform linux/amd64 -t react-flask-app-api .
 
-docker build -f Dockerfile.api --platform linux/amd64 -t react-flask-app-api .
-docker run --env-file env.list -p 5000:5000 react-flask-app-api
+docker build -f Dockerfile --platform linux/amd64 -t snowday .
+docker run --env-file env.list -p 5000:5000 snowday
 
+
+
+-- docker tag snowday:latest sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/docker_containers_db/finance_app_images/app_templates_repo/snowday:latest
+-- docker login sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com
+-- docker push sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/docker_containers_db/finance_app_images/app_templates_repo/snowday:latest
 
 --------
 
