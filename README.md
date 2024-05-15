@@ -3,6 +3,30 @@
 
 ## Overview
 
+$ npx create-react-app react-flask-app
+$ cd react-flask-app
+
+conda create --name spcs_env -c https://repo.anaconda.com/pkgs/snowflake python=3.9
+conda activate spcs_env
+
+pip install flask
+
+-- need mui here npm install mui
+https://stackoverflow.com/questions/29882642/how-to-run-a-flask-application
+The flask command is a CLI for interacting with Flask apps. The docs describe how to use CLI commands and add custom commands. The flask run command is the preferred way to start the development server.
+Never use this command to deploy publicly, use a production WSGI server such as Gunicorn, uWSGI, Waitress, or mod_wsgi.
+As of Flask 2.2, use the --app option to point the command at your app. It can point to an import name or file name. It will automatically detect an app instance or an app factory called create_app. Use the --debug option to run in debug mode with the debugger and reloader.
+
+$ flask --app sample --debug run
+
+react-flask-app-0 % docker build -f Dockerfile.api --platform linux/amd64 -t react-flask-app-api .
+
+docker build -f Dockerfile.api --platform linux/amd64 -t react-flask-app-api .
+docker run --env-file env.list -p 5000:5000 react-flask-app-api
+
+
+--------
+
 This repo contains instructions for building a React application running in Snowpark Container Sevices (SPCS) and it also demonstrates the use of Snowflake Cortex from within the application. *Note that both SPCS and Snowflake Cortex are currently in Public Preview.*
 
 Here is the outline of what's covered:
@@ -222,6 +246,10 @@ In the application, clicking on **Generate Call Summary** button will call `/llm
 ## Quick Demo
 
 https://github.com/Snowflake-Labs/sfguide-spcs-cortex-reactjs-flask-app/assets/1723932/3ab95947-f426-4f80-b870-7310ce410ba4
+
+CONGRATULATIONS!!! :) 
+
+
 
 CONGRATULATIONS!!! :) 
 
