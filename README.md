@@ -148,11 +148,11 @@ Assuming you were able to successfully run the application in [Docker](#docker-s
 In Snowsight, execute the following SQL statememts to create and launch the service.
 
 ```sql
-use role DASH_SPCS;
+use role DATA_ENGINEER_FR;
 
 create service react_templates_svc
-in compute pool REACT_TEMPLATES_CP
-from @DATA_ENG_APPS
+in compute pool REACT_TEMPLATES_COMP_POOL
+from @REACT_TEMPLATES
 specification_file = 'react_templates.yaml';
 ```
 
@@ -178,7 +178,7 @@ Account                     : <your_account>
 User                        : None
 Host                        : <your-org-name-your-account-name>.snowflakecomputing.com
 Database                    : CONTAINERS
-Schema                      : APP_IMAGES
+Schema                      : REACT_TEMPLATES
 Warehouse                   : ADMIN_UTILITY_WH
 Llama 2 Model               : llama2-70b-chat
 Current Directory           : /app
