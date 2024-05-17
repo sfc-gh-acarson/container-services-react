@@ -51,8 +51,12 @@ SNOWFLAKE_ROLE=
 SNOWFLAKE_WAREHOUSE=
 LLAMA2_MODEL=llama2-70b-chat
 ```
-Make sure Docker is running and then in a terminal window, browse to the cloned folder and execute the following command to build the Docker image.
+Make sure Docker is running and then in a terminal window, browse to the cloned folder and execute the following commands to build and run the Docker image.
 
 `docker build --platform linux/amd64 -t react_templates .`
+`docker run --env-file env.list -p 5000:5000 react_templates`
 
-Once the Docker image is built follow these steps to run the end-to-end application in Docker.
+`docker tag react_templates:latest sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/containers/react_templates/react_templates_repo/react_templates:latest`
+`docker login sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com`
+`docker push sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/containers/react_templates/react_templates_repo/react_templates:latest`
+
