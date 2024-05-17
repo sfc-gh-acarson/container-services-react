@@ -1,3 +1,20 @@
+## Prerequisites
+
+* Snowflake Account that has SPCS and Snowflake Cortex enabled. *Note that both SPCS and Snowflake Cortex are currently in Public Preview.*
+* Docker Desktop (https://docs.docker.com/desktop) 
+* npm (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)  
+* Node.js (https://nodejs.org/en/download)
+
+## Create Objects, Tables And Load Data
+
+Follow instructions in [setup.sql](deploy_package/00 - setup.sql) to create necessary objects such as database, schema, warehouse, tables and load data using Snowsight.
+
+## Setup Environment
+
+### Step 1: Clone Repository
+
+Clone this repo and browse to the cloned repo
+
 ### Step 2: Create Conda Environment
 
 * Download and install the miniconda installer from https://conda.io/miniconda.html. (OR, you may use any other Python environment, for example, [virtualenv](https://virtualenv.pypa.io/en/latest/)).
@@ -60,3 +77,52 @@ Make sure Docker is running and then in a terminal window, browse to the cloned 
 * execute `docker login sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com`
 * execute `docker push sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/containers/react_templates/react_templates_repo/react_templates:latest`
 
+### Pushing & Running in Snowflake
+
+### Step 1: Upload Configuration File
+* Update the following attributes in [react_templates.yaml](deploy_package/react_templates.yaml)
+
+  * Set `image` to your image URL. For example, `/containers/app_images/react_templates_repo/react_templates:latest`.
+  * Set `SNOWFLAKE_WAREHOUSE` to the name of your warehouse that you'd like to use for this application. For example, `ADMIN_UTILITY_WH`.
+  * Set `DATA_DB` and `DATA_SCHEMA` to the names of database and schema where you created the USER table. For example,`CONTAINERS` and `DATA_ENG_APPS`.
+
+* Upload **updated** [react_templates.yaml](deploy_package/react_templates.yaml) as described above to YOUR_DB.YOUR_SCHEMA.YOUR_STAGE. For example, `CONTAINERS.APP_IMAGES.DATA_ENG_APPS`.
+
+### Step 2: Create Service
+
+In Snowsight, execute the following SQL statememts to create and launch the service.
+
+```
+create service react_templates_svc
+    in compute pool REACT_TEMPLATES_COMP_POOL
+    from @IMAGES_STG
+    specification_file = 'react_templates.yaml'
+;
+```
+
+### Step 3: Check Service Status
+Execute the following SQL statement and check the status of the service to make sure it's in READY state before proceeding.
+
+```sql
+select 
+  v.value:containerName::varchar container_name
+  ,v.value:status::varchar status  
+  ,v.value:message::varchar message
+from (select parse_json(system$get_service_status('react_templates_svc'))) t, 
+lateral flatten(input => t.$1) v;
+```
+
+To get logs, execute this SQL statment `CALL SYSTEM$GET_SERVICE_LOGS('CONTAINERS.APP_IMAGES.react_templates_svc', 0, 'react_templates', 1000);`
+
+### Step 4: Get Public Endpoint
+
+```sql
+show endpoints in service react_templates_svc;
+```
+### Additional SHOW Commands
+```sql
+SHOW COMPUTE POOLS;
+SHOW WAREHOUSES;
+SHOW IMAGE REPOSITORIES;
+SHOW STAGES;
+```
