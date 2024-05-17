@@ -9,20 +9,50 @@ In a terminal window, browse to the cloned repo folder and execute the following
 
 ### Step 3: Install Flask
 
-In the same terminal window where you have `react-templates-env` env activated, execute `cd api` and `pip install requirements.txt`
+In the same terminal window where you have `react-templates-env` activated, execute `cd api` and `pip install requirements.txt`
 
 ### Step 4: Install React And Its Components
 
-In the same terminal window where you have `react-templates-env` env activated, execute `npm install`
+In the same terminal window where you have `react-templates-env` activated, execute `npm install`
 
-## Build Application
+## Running Locally
 
-In the same terminal window where you have `react-templates-env` env activated, execute `npm run build` to build the application.
+If you'd like to work on both the client-side (React) and server-side (Flask / Python) code at the same time, this will require the services running in two separate terminals. The easiest way to do this is just create another terminal instance and split it out to the right. 
+* Export variables for Snowflake Credentials
+```
+export SNOWFLAKE_ACCOUNT=
+export SNOWFLAKE_HOST=
+export SNOWFLAKE_DATABASE=
+export SNOWFLAKE_SCHEMA=
+export SNOWFLAKE_USER=
+export SNOWFLAKE_PASSWORD=
+export SNOWFLAKE_ROLE=
+export SNOWFLAKE_WAREHOUSE=
+```
 
-### Run Application Locally
+* Terminal Sessions:
+*   Terminal 1 (React): execute `npm run build` to build the application and `npm run start` to launch the application to a local browser.
+*   Terminal 2 (Flask): execute `cd api` and `flask --app api --debug run` to start the flask app.
 
-Split your terminals and:
-Terminal 1: execute `npm run start` and you should see the application running locally in a web browser.
-Terminal 2: `cd api` and `flask --app api --debug run` 
+Once done working locally, ctrl+c will terminate the sessions. The dual terminals can now be closed out and only one is needed. 
 
-At this point, you can test the UI and make sure everything looks good, but in order to test the app end-to-end such that it's wired up to work with Flask backend--which ultimately interacts with your Snowflake account via SPCS, see **Docker Setup** section below.
+### Running in Docker
+
+* Update [env.list](env.list) with your credentials and other information regarding your Snowflake account that's enabled for SPCS.
+
+```
+SNOWFLAKE_ACCOUNT=
+SNOWFLAKE_HOST=
+SNOWFLAKE_DATABASE=
+SNOWFLAKE_SCHEMA=
+SNOWFLAKE_USER=
+SNOWFLAKE_PASSWORD=
+SNOWFLAKE_ROLE=
+SNOWFLAKE_WAREHOUSE=
+LLAMA2_MODEL=llama2-70b-chat
+```
+Make sure Docker is running and then in a terminal window, browse to the cloned folder and execute the following command to build the Docker image.
+
+`docker build --platform linux/amd64 -t react_templates .`
+
+Once the Docker image is built follow these steps to run the end-to-end application in Docker.
