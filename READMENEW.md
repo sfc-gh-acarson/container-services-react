@@ -1,8 +1,8 @@
 ### Step 2: Create Conda Environment
 
-In a terminal window, browse to the cloned repo folder and execute the following commands:
-
 * Download and install the miniconda installer from https://conda.io/miniconda.html. (OR, you may use any other Python environment, for example, [virtualenv](https://virtualenv.pypa.io/en/latest/)).
+
+In a terminal window, browse to the cloned repo folder and execute the following commands:
 * Execute `conda create --name react-templates-env -c https://repo.anaconda.com/pkgs/snowflake python=3.9`
 * Execute `conda activate react-templates-env`
 * Execute `conda install -c https://repo.anaconda.com/pkgs/snowflake snowflake-snowpark-python pandas`
