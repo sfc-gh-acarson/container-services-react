@@ -55,7 +55,8 @@ In a terminal window, browse to the cloned repo folder and execute the following
 
 ### Step 3: Install Flask
 
-In the same terminal window where you have `react-templates-env` env activated, execute `pip install Flask`
+Old: In the same terminal window where you have `react-templates-env` env activated, execute `pip install Flask`
+In the same terminal window where you have `react-templates-env` env activated, execute `pip install requirements.txt`
 
 ### Step 4: Install React And Its Components
 
@@ -67,7 +68,9 @@ In the same terminal window where you have `react-templates-env` env activated, 
 
 ### Run Application Locally
 
-In the same terminal window, execute `npm run start` and you should see the application running locally in a web browser.
+Split your terminals and:
+Terminal 1: execute `npm run start` and you should see the application running locally in a web browser.
+Terminal 2: flask --app api --debug run
 
 At this point, you can test the UI and make sure everything looks good, but in order to test the app end-to-end such that it's wired up to work with Flask backend--which ultimately interacts with your Snowflake account via SPCS, see **Docker Setup** section below.
 
