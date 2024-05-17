@@ -56,7 +56,7 @@ Make sure Docker is running and then in a terminal window, browse to the cloned 
 `docker build --platform linux/amd64 -t react_templates .`
 `docker run --env-file env.list -p 5000:5000 react_templates`
 
-`docker tag react_templates:latest sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/containers/react_templates/react_templates_repo/react_templates:latest`
-`docker login sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com`
-`docker push sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/containers/react_templates/react_templates_repo/react_templates:latest`
+execute `docker tag react_templates:latest sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/containers/react_templates/react_templates_repo/react_templates:latest`
+execute `docker login sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com`
+execute `docker push sfpscogs-andrew-carson-personal-sandbox.registry.snowflakecomputing.com/containers/react_templates/react_templates_repo/react_templates:latest`
 
